@@ -1,0 +1,223 @@
+/* style.css */
+
+/* --- Variáveis e Reset Básico --- */
+:root {
+    --back-title: #22618d;
+    --primary-blue: #576075; /* Azul escuro do fundo */
+    --link-blue: #1b97f5; /* Azul dos botões de pasta/título */
+    --button-bg: rgba(246, 246, 246, 1); /* Fundo claro dos botões */
+    --button-text: #000000;
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    --max-content-width: 600px;
+    --min-content-width: 200px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+#loading-bar-container {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.loading-message {
+    margin-top: 150px;
+    color: #fff;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+}
+
+#loading-bar {
+    width: 80%;
+    max-width: 400px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo estático da barra */
+    border-radius: 4px;
+    margin: 0 auto;
+    overflow: hidden; 
+    position: relative; /* Necessário para posicionar o indicador */
+}
+
+#progress-indicator {
+    height: 100%;
+    
+    /* O indicador agora tem uma largura definida (ex: 30%) */
+    width: 35%; 
+    
+    background-color: var(--button-bg); /* Cor do indicador (branco/claro) */
+    border-radius: 4px;
+    position: absolute; /* Posicionamento dentro do #loading-bar */
+    left: 0;
+    
+    /* Animação que faz o indicador correr infinitamente */
+    animation: indeterminate-progress 2s linear infinite;
+}
+
+/* Define a animação: move o indicador de -30% para 100% da barra */
+@keyframes indeterminate-progress {
+    0% { 
+        /* Começa um pouco para fora da esquerda (negativo da largura) */
+        transform: translateX(-100%); 
+    }
+    100% { 
+        /* Termina movendo para 100% (fora da direita) */
+        transform: translateX(380%); 
+    }
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--primary-blue); /* Fundo Azul */
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+/* --- Cabeçalho e Perfil --- */
+.profile-header {
+    text-align: center;
+    padding: 0; 
+}
+
+.topper {
+   
+    max-width: var(--max-content-width); 
+    min-width: var(--min-content-width);
+    width: 90%; 
+    
+    
+    margin: 0 auto 30px auto; 
+    
+    background-color: var(--back-title);
+    height: auto; 
+    box-shadow: rgb(0, 0, 0) 4.6431px 5.159px 0px 0px;
+    
+    padding: 20px;
+    border-radius: 12px; 
+    text-align: center;
+}
+
+.profile-picture {
+    width: 100px; /* Um pouco menor, como na imagem */
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.display-name {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.bio {
+    font-weight: 400;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.social-links a {
+    margin: 0px 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5em; /* Apenas para simular os ícones */
+}
+
+/* --- Conteúdo dos Links --- */
+#links-container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0px 15px;
+    min-width: var(--min-content-width);
+}
+
+/* Estilo para Títulos de Grupo (Simula a Pasta/Acordeão) */
+.link-group-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+    padding: 15px;
+    background-color: var(--link-blue); /* Fundo azul/branco como os botões de pasta */
+    color: #fff;
+    font-size: 1em;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.link-group-title .arrow-icon {
+    margin-left: 10px;
+    stroke: #ffffff; 
+    transition: transform 0.3s ease;
+    transform: rotate(180deg); 
+}
+
+.link-group-title.expanded .arrow-icon {
+    transform: rotate(0deg); 
+}
+
+.group-items-container {
+    border-radius: 10px;
+    /* overflow: hidden;  */
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+/* Estilo dos Links Individuais (Botões) */
+.link-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none; 
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s;
+}
+
+.link-item:hover {
+    transform: scale(1.02);
+}
+
+.link-thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.link-details {
+    flex-grow: 1;
+}
+
+.link-details h3 {
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.link-details p {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* --- Rodapé --- */
+footer {
+    text-align: center;
+    font-size: 0.7em;
+    color: #bbb;
+    margin-top: 40px;
+}
